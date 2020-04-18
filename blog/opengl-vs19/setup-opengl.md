@@ -41,7 +41,7 @@ Copy the `freeglut` **_folder_** into `C:\`
 
 ![enter image description here](https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/new-project.png?raw=true)
 
-4. Now we'll setup the linker and include paths for our `x64` application
+3. Now we'll setup the linker and include paths for our `x64` application
 
 3.1 Open `Project` -> `Properties` and click on `Configuration Manager...` and set it to `x64`
 
