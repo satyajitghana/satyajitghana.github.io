@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="setup-opengl-with-visual-studio-2019-on-windows-10-x64">Setup OpenGL with Visual Studio 2019 on Windows 10 x64</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Open Graphics Library is a cross-language, cross-platform application programming interface for rendering 2D and 3D vector graphics. The API is typically used to interact with a graphics processing unit, to achieve hardware-accelerated rendering.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>To execute your graphics applications written using OpenGL libraries, you can use Visual Studio.</p>
+<p>Microsoft Visual Studio is an integrated development environment (IDE) from Microsoft. It is used to develop computer programs, as well as websites, web apps, web services and mobile apps.</p>
+<p>Install  <strong>Visual Studio 2019</strong>  using the official  <a href="https://visualstudio.microsoft.com/vs/">installer</a>  with the required components as shown in the image below. (Recommended <a href="https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&amp;rel=16">Community 2019</a>)</p>
+<p><img src="https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/install-screen.png?raw=true" alt="enter image description here"></p>
+<p><img src="https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/install-screen-2.png?raw=true" alt="enter image description here"></p>
+<h2 id="note">Note</h2>
+<p>This tutorial does not install the <code>OpenGL GLUT</code> library permanently i.e. system-wide, this is to make sure there are no version conflicts later on, so in every project you can make use of a different version of GLUT without hindering the already if installed GLUT.</p>
+<p><code>freeglut</code> is also getting old, consider using newer libraries like <code>GLEW</code> and <code>GLFW</code> for <code>C++</code>, which is my only reason to not install <code>GLUT</code> system wide.</p>
+<h2 id="opengl-project-setup">OpenGL Project Setup</h2>
+<p>We’ll first download freeglut’s binaries for msvc as mentioned in <a href="http://freeglut.sourceforge.net/">http://freeglut.sourceforge.net/</a></p>
+<p>The freeglut project does not support packaged versions of freeglut excepting, of course, the tarballs distributed here. However, various members of the community have put time and effort into providing source or binary rollups.</p>
+<ol>
+<li>Download freeglut for MSVC <a href="https://www.transmissionzero.co.uk/files/software/development/GLUT/freeglut-MSVC.zip">freeglut-MSVC</a>.</li>
+</ol>
+<p>Unzip the downloaded <code>.zip</code> and you’ll get something like below, this includes the precompiled libraries and the required header and dll files as well.</p>
+<p><img src="https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/unzipped.png?raw=true" alt="enter image description here"></p>
+<p>Copy the <code>freeglut</code> <strong><em>folder</em></strong> into <code>C:\</code></p>
+<ol start="2">
+<li>Open Visual Studio 2019 and Create a new <code>Console App</code> Project</li>
+</ol>
+<p><img src="https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/new-project.png?raw=true" alt="enter image description here"></p>
+<ol start="4">
+<li>Now we’ll setup the linker and include paths for our <code>x64</code> application</li>
+</ol>
+<p>3.1 Open <code>Project</code> -&gt; <code>Properties</code> and click on <code>Configuration Manager...</code> and set it to <code>x64</code></p>
+<p><img src="https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/project-configuration.png?raw=true" alt="enter image description here"></p>
+<p><strong>NOTE</strong>: To change a value click on the down arrow to the right and then click on <code>&lt;Edit...&gt;</code>, then you can select your directory path</p>
+<p>3.2 Set the <code>Configuration Properties</code> -&gt; <code>VC++ Directories</code> to these values<br>
+i.e. Add <code>C:\freeglut\include</code> in <code>Include Directories</code><br>
+and Add <code>C:\freeglut\lib\x64</code> in <code>Library Directories</code></p>
+<p><img src="https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/include-directories.png?raw=true" alt="enter image description here"></p>
+<p><img src="https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/vcpp-directories.png?raw=true" alt="enter image description here"></p>
+<p>3.3 Set the <code>Configuration Properties</code> -&gt; <code>Linker</code> -&gt; <code>General</code>to these values<br>
+Add <code>C:\freeglut\lib\x64</code> to <code>Additional Library Directories</code></p>
+<p><img src="https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/linker-general.png?raw=true" alt="enter image description here"></p>
+<p>3.4 Set the <code>Configuration Properties</code> -&gt; <code>Linker</code> -&gt; <code>Input</code> to these values<br>
+Add <code>freeglut.lib</code> to <code>Additional Dependencies</code></p>
+<p><img src="https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/linker-input.png?raw=true" alt="enter image description here"></p>
+<ol start="4">
+<li>Replace the code in your <code>&lt;PROJECT_NAME&gt;.cpp</code> (in my case <code>OpenGL_HelloWorld.cpp</code>) with the below code</li>
+</ol>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;GL/freeglut.h&gt;</span></span>
+
+<span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/* clear window */</span>
+    <span class="token function">glClear</span><span class="token punctuation">(</span>GL_COLOR_BUFFER_BIT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* draw scene */</span>
+    <span class="token function">glutSolidTeapot</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* flush drawing routines to the window */</span>
+    <span class="token function">glFlush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/* initialize GLUT, using any commandline parameters passed to the
+       program */</span>
+    <span class="token function">glutInit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* setup the size, position, and display mode for new windows */</span>
+    <span class="token function">glutInitWindowSize</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">glutInitWindowPosition</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">glutInitDisplayMode</span><span class="token punctuation">(</span>GLUT_RGB<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* create and set up a window */</span>
+    <span class="token function">glutCreateWindow</span><span class="token punctuation">(</span><span class="token string">"hello, teapot!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">glutDisplayFunc</span><span class="token punctuation">(</span>display<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* tell GLUT to wait for events */</span>
+    <span class="token function">glutMainLoop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<ol start="5">
+<li>Build the Project 🚀<br>
+<code>Build</code> -&gt; <code>Build Solution</code></li>
+</ol>
+<p>If you followed the tutorial you should see something like this</p>
+<p><img src="https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/build-success.png?raw=true" alt="enter image description here"></p>
+<ol start="6">
+<li>Now to run the executable we need <code>freeglut.dll</code> which is in <code>C:\freeglut\bin\x64</code></li>
+</ol>
+<p>Copy <code>freeglut.dll</code> to <code>&lt;YOUR_PROJECT_DIRECTORY&gt;\x64\Debug\</code>, in my case <code>C:\Users\shadowleaf\source\repos\OpenGL_HelloWorld\x64\Debug\</code></p>
+<ol start="7">
+<li>Run the Executable !</li>
+</ol>
+<p>Click on <code>Debug</code> -&gt; <code>Start Without Debugging</code></p>
+<p><img src="https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/output.png?raw=true" alt="enter image description here"></p>
+<p>Example Project is in <a href="https://github.com/satyajitghana/satyajitghana.github.io/tree/master/blog/opengl-vs19/example/OpenGL_HelloWorld">https://github.com/satyajitghana/satyajitghana.github.io/tree/master/blog/opengl-vs19/example/OpenGL_HelloWorld</a></p>
+<h3 id="that-is-it-folks-">That is it folks !</h3>
+<hr>
+<p>Made with 💖 by <code>shadowleaf</code></p>
+</div>
+</body>
+
+</html>
