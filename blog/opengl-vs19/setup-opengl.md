@@ -31,6 +31,8 @@ The freeglut project does not support packaged versions of freeglut excepting, o
 
 1. Download freeglut for MSVC [freeglut-MSVC](https://www.transmissionzero.co.uk/files/software/development/GLUT/freeglut-MSVC.zip).
 
+Alternatively download freeglut 3.0.0 MSVC Package from [https://www.transmissionzero.co.uk/software/freeglut-devel/](https://www.transmissionzero.co.uk/software/freeglut-devel/)
+
 Unzip the downloaded `.zip` and you'll get something like below, this includes the precompiled libraries and the required header and dll files as well.
 
 ![enter image description here](https://github.com/satyajitghana/satyajitghana.github.io/blob/master/blog/opengl-vs19/assets/unzipped.png?raw=true)
