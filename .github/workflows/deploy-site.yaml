@@ -26,8 +26,9 @@ jobs:
           pelican-themes --install themes/attila
           make html
 
-      - name: Deploy Build
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.5.9
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: deploy # The branch the action should deploy to.
+          FOLDER: output # The folder the action should deploy.
