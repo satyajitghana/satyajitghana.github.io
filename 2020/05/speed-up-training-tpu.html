@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<head>
+    <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Speed-Up your Model Training w/ TPU on Google Colab</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+  <link href="/" rel="canonical" />
+
+  <!-- Feed -->
+
+  <link href="/theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="/theme/css/code_blocks/github.css" rel="stylesheet">
+
+    <!-- CSS specified by the user -->
+
+
+    <link href="/assets/css/myblog.css" type="text/css" rel="stylesheet" />
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+  <link href="/2020/05/speed-up-training-tpu.html" rel="canonical" />
+
+    <meta name="description" content="In this post we will see how you can leverage using TPU's to speed up training on PyTorch models on Google Colab !">
+
+    <meta name="author" content="satyajit-ghana">
+
+    <meta name="tags" content="tpu">
+    <meta name="tags" content="google colab">
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Satyajit Ghana"/>
+<meta property="og:title" content="Speed-Up your Model Training w/ TPU on Google Colab"/>
+<meta property="og:description" content="In this post we will see how you can leverage using TPU's to speed up training on PyTorch models on Google Colab !"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/2020/05/speed-up-training-tpu.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2020-05-20 10:20:00+05:30"/>
+<meta property="article:modified_time" content="2010-05-20 19:30:00+05:30"/>
+<meta property="article:author" content="/author/satyajit-ghana">
+<meta property="article:section" content="blog"/>
+<meta property="article:tag" content="tpu"/>
+<meta property="article:tag" content="google colab"/>
+<meta property="og:image" content="/theme/images/post-bg.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "Speed-Up your Model Training w/ TPU on Google Colab",
+  "headline": "Speed-Up your Model Training w/ TPU on Google Colab",
+  "datePublished": "2020-05-20 10:20:00+05:30",
+  "dateModified": "2010-05-20 19:30:00+05:30",
+  "author": {
+    "@type": "Person",
+    "name": "satyajit-ghana",
+    "url": "/author/satyajit-ghana"
+  },
+  "image": "/theme/images/post-bg.jpg",
+  "url": "/2020/05/speed-up-training-tpu.html",
+  "description": "In this post we will see how you can leverage using TPU's to speed up training on PyTorch models on Google Colab !"
+}
+</script>
+</head>
+<!-- TODO : Body class -->
+<body class="home-template">
+
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
+
+              <li role="presentation"><a href="/pages/about/">About</a></li>
+
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">Speed-Up your Model Training w/ TPU on Google Colab</h1>
+        <!-- TODO : Proper class for headline -->
+        <span class="post-meta">
+                <a href="/author/satyajit-ghana">Satyajit Ghana</a>
+            | <time datetime="20 May 2020">20 May 2020</time>
+        </span>
+        <!-- TODO : Modified check -->
+            <span class="post-meta"> | Updated on 20 May 2010</span>
+            <div class="post-cover cover" style="background-image: url('/theme/images/post-bg.jpg')">
+      </div>
+    </header>
+
+  <section id="wrapper">
+    <a class="hidden-close"></a>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <h1>Speed-Up your Model Training w/ TPU on Google Colab</h1>
+<p>This is not a post for strictly benchmarking TPUs vs GPUs on a highly technical level, so let’s not get into too much of the technical details, its just my experience with TPUs and how the deep learning world is affected by it.</p>
+<p>Model: ResNet-Unet like architecture, has ~30M parameters</p>
+<p>Dataset: 1200K images (96x96x3)</p>
+<p>seems straight forward right ? but there were many barriers even before i started training for a single epoch.</p>
+<p>My first and obvious choice was to train the model on colab with those sweet little Tesla P100s (16GB), but there were memory issues</p>
+<p>CUDA OOM (out-of-memory): The model size was ~135MB and my batch_size was 128, as per my calculations, it should fit in gpu memory, but then after a lot of poking around the model i realised my model is way too densly connected and the space required for allocating the gradients doesn’t fit in memory, something that i should have seen coming.</p>
+<p>So now that out of the way i simply converted all my concatenation ops into addition ops and now it worked with a batch_size of 128, here is my code for it, i also timed every section of my code to see which part of the code consumes most of the time.</p>
+<script src="https://gist.github.com/satyajitghana/24be641a18156995c17c49d26b535082.js"></script>
+
+<p>and here’s the output</p>
+<p><img alt="train on gpu (P100)" src="https://cdn-images-1.medium.com/max/3564/1*chOqgo4lzGz9NCC7yEfxQA.png"><em>train on gpu (P100)</em></p>
+<p>So in summary the model took ~2331s to train on one epoch, which is acceptable, but still i want it be be even less.</p>
+<p>I’m not rich enough to buy 4xP100 and train them on parallel, i rely on colab for all my training.</p>
+<p>The next best option is to use a TPU !</p>
+<p>Tensorflow models have good support for TPU and its straight forward with Estimator API to train on TPU, but since i was already comfortable with PyTorch i did not want to move on to Tensorflow, one option is to use PyTorch Lightning, and you can easily find colab notebooks for running a model on TPU
+<a href="https://colab.research.google.com/drive/1-_LKx4HwAxl5M6xPJmqAAu444LTDQoa3"><strong>Google Colaboratory</strong>
+<em>PyTorch Lightning TPU Demo</em>colab.research.google.com</a></p>
+<p>But i felt most of these don’t work properly, and seems buggy, and there are a lot of issues, but will surely check it out some other time, for now i wanted to run my model with the least amount of changes.</p>
+<blockquote>
+<p>This repo is good start if you want to get started on working with TPUs https://github.com/pytorch/xla/tree/master/contrib/colab , try running their notebooks on colab</p>
+</blockquote>
+<p>So, i decided to follow the PyTorch XLA tutorials <a href="https://github.com/pytorch/xla/blob/master/contrib/colab/resnet18-training.ipynb">https://github.com/pytorch/xla/blob/master/contrib/colab/resnet18-training.ipynb</a></p>
+<p>And came up with this code</p>
+<script src="https://gist.github.com/satyajitghana/1e5b36fa764803de853e826c504a560c.js"></script>
+
+<p>Notice, there isn’t much changes (zero changes to the model), the only thing is to create a Parallel Loader, and then create a Sampler, then simply train the model, few things to note:</p>
+<blockquote>
+<p>A TPU is a Tensor processing unit. Each TPU has 8 cores where each core is optimized for 128x128 matrix multiplies. In general, a single TPU is about as fast as 5 V100 GPUs!
+A TPU pod hosts many TPUs on it. Currently, TPU pod v2 has 2048 cores! You can request a full pod from Google cloud or a “slice” which gives you some subset of those 2048 cores. [1]</p>
+</blockquote>
+<ul>
+<li>xm.optimizer_step() does not take a barrier argument this time</li>
+<li>Model was declared outside the run function and was sent to Xla Device in the run fucntion whereas when using single TPU’s we did it simultaneously in one place</li>
+<li>Something called Paraloader is wrapped around dataloader</li>
+<li>USE of XLA_USE_BF16 Environment variable</li>
+<li>And off course we now run the spawn function to execute the model training and eval</li>
+<li>You get 8 TPU cores on Colab</li>
+</ul>
+<p>So a run on a TPU now</p>
+<p><img alt="sample run on TPUs" src="https://cdn-images-1.medium.com/max/3564/1*sWfSSwd3MaKmZersBgLqUA.png"><em>sample run on TPUs</em></p>
+<p>Note that all the TPU cores run the model simultaneously, so in total it took ~740s for the model to run for one epoch, crazy amazing right !? 3X speedup ! now instead of training 1 epoch on GPU i could train 3 epochs on TPU ! and depending upon the model you could get even more speedup !</p>
+<p>And these were the outputs from the model, basically is a mask+depth predictor, something i need to experiment is on the loss functions</p>
+<p><img alt="model output" src="https://cdn-images-1.medium.com/max/2000/1*276b8AnHtaGtzf3zCTQvnQ.png"><em>model output</em></p>
+<p>Further Improvements:</p>
+<ul>
+<li>Use PyTorch Lightning ?</li>
+<li>Experiment with BFloats</li>
+</ul>
+<p>Further Reading</p>
+<ul>
+<li><a href="https://pytorch-lightning.readthedocs.io/en/latest/tpu.html">https://pytorch-lightning.readthedocs.io/en/latest/tpu.html</a></li>
+<li><a href="https://github.com/pytorch/xla">https://github.com/pytorch/xla</a></li>
+<li><a href="https://www.kaggle.com/tanulsingh077/pytorch-xla-understanding-tpu-s-and-xla">https://www.kaggle.com/tanulsingh077/pytorch-xla-understanding-tpu-s-and-xla</a></li>
+<li><a href="https://www.kaggle.com/c/flower-classification-with-tpus/discussion/129820">https://www.kaggle.com/c/flower-classification-with-tpus/discussion/129820</a></li>
+<li><a href="https://www.tensorflow.org/xla">https://www.tensorflow.org/xla</a></li>
+</ul>
+<p>References</p>
+<p>[1] . <a href="https://pytorch-lightning.readthedocs.io/en/latest/tpu.html">https://pytorch-lightning.readthedocs.io/en/latest/tpu.html</a></p>
+<p>GitHub Source Code for my model: <a href="https://github.com/satyajitghana/ProjektDepth">https://github.com/satyajitghana/ProjektDepth</a></p>
+            </section>
+
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=Speed-Up your Model Training w/ TPU on Google Colab&amp;url=/2020/05/speed-up-training-tpu.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=/2020/05/speed-up-training-tpu.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=/2020/05/speed-up-training-tpu.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+                <aside class="post-tags">
+<a href="/tag/tpu">tpu</a><a href="/tag/google-colab">google colab</a>                </aside>
+
+                <div class="clear"></div>
+
+                <aside class="post-author">
+
+
+                        <figure class="post-author-avatar">
+                            <img src="/assets/images/avatar.jpg" alt="Satyajit Ghana" />
+                        </figure>
+                    <div class="post-author-bio">
+                        <h4 class="post-author-name"><a href="/author/satyajit-ghana">Satyajit Ghana</a></h4>
+                            <p class="post-author-about">idhar bhi ek catchy bio likhna hai</p>
+                            <span class="post-author-location"><i class="ic ic-location"></i> Bangalore</span>
+                            <span class="post-author-website"><a href="http://github.com/satyajitghana"><i class="ic ic-link"></i> Website</a></span>
+                        <!-- Social linkes in alphabet order. -->
+                            <span class="post-author-github"><a target="_blank" href="https://github.com/satyajitghana"><i class="ic ic-link"></i> GitHub</a></span>
+                            <span class="post-author-linkedin"><a target="_blank" href="https://www.linkedin.com/in/satyajitghana"><i class="ic ic-link"></i> LinkedIn</a></span>
+                    </div>
+                    <div class="clear"></div>
+                </aside>
+
+                </section>
+
+
+                <aside class="post-nav">
+                    <div class="clear"></div>
+                </aside>
+
+            </div>
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
+
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script type="text/javascript" src="/theme/js/script.js"></script>
+
+</body>
+</html>
