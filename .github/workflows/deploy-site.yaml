@@ -1,18 +1,32 @@
 name: deploy-site
-on: [push]
+on:
+  push:
+    branches: [ master ]
 
 jobs:
   build:
-    name: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
       - name: Fetch pelican-plugins
         run: |
           git submodule update --init --recursive
           git fetch --recurse-submodules
           git pull --recurse-submodules
-      - name: GitHub Pages Pelican Build Action
-        uses: nelsonjchen/gh-pages-pelican-action@0.1.5
+
+      - name: Pelican Build
+        uses: actions/setup-python@v2
         with:
-          GH_PAGES_BRANCH: deploy
-          PELICAN_CONFIG_FILE: pelicanconf.py
+          python-version: '3.x'
+          architecture: 'x64'
+        run: |
+          pip install -r requirements.txt
+          pelican-themes --install themes/attila
+          make html
+
+      - name: Deploy Build
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
