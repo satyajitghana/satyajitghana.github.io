@@ -15,11 +15,12 @@ jobs:
           git fetch --recurse-submodules
           git pull --recurse-submodules
 
-      - name: Pelican Build
+      - name: Set up Python 3.8
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
-          architecture: 'x64'
+          python-version: "3.8"
+
+      - name: Pelican Build
         run: |
           pip install -r requirements.txt
           pelican-themes --install themes/attila
