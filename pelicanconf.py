@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Satyajit Ghana'
 SITENAME = u'Satyajit Ghana'
-SITESUBTITLE = u'Idhar ek catchy line daalne ka hai'
+SITESUBTITLE = u'hello friends, mera blog padh lo'
 SITEURL = ''
 
 PATH = 'content'
@@ -131,7 +131,7 @@ AUTHORS_BIO = {
     "linkedin": "satyajitghana",
     "github": "satyajitghana",
     "location": "Bangalore",
-    "bio": "idhar bhi ek catchy bio likhna hai"
+    "bio": "ek hee moto: apun ko bohot kuch seekhna hai aur bohot kum waqt mai"
   }
 }
 
