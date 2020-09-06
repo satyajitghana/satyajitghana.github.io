@@ -66,7 +66,7 @@ build
 
 So you can simply delete these folders/files and open the project in Android Studio, then run
 
-```shell script
+```text
 flutter clean
 flutter pub get
 ```
@@ -75,4 +75,4 @@ This will clean up the build folder, and then fetch the dependencies mentioned i
 
 Now you can attach your android device and click on run to start debugging !
 
-![run](run.png)
+![run]({attach}run.png)
