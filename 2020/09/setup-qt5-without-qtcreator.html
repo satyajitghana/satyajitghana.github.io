@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<head>
+    <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Setup Qt5 w/o QtCreator in Linux</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+  <link href="/" rel="canonical" />
+
+  <!-- Feed -->
+
+  <link href="/theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="/theme/css/code_blocks/github.css" rel="stylesheet">
+
+    <!-- CSS specified by the user -->
+
+
+    <link href="/assets/css/myblog.css" type="text/css" rel="stylesheet" />
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+  <link href="/2020/09/setup-qt5-without-qtcreator.html" rel="canonical" />
+
+    <meta name="description" content="I generally dont like a special IDE for making a GUI application, like QtCreator, i wanted to have more control and use Makfile and make...">
+
+    <meta name="author" content="satyajit-ghana">
+
+    <meta name="tags" content="raspberry pi">
+    <meta name="tags" content="vscode">
+    <meta name="tags" content="linux">
+    <meta name="tags" content="qt">
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Satyajit Ghana"/>
+<meta property="og:title" content="Setup Qt5 w/o QtCreator in Linux"/>
+<meta property="og:description" content="I generally dont like a special IDE for making a GUI application, like QtCreator, i wanted to have more control and use Makfile and make..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/2020/09/setup-qt5-without-qtcreator.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2020-09-09 22:30:00+05:30"/>
+<meta property="article:modified_time" content="2020-09-09 22:30:00+05:30"/>
+<meta property="article:author" content="/author/satyajit-ghana">
+<meta property="article:section" content="tutorial"/>
+<meta property="article:tag" content="raspberry pi"/>
+<meta property="article:tag" content="vscode"/>
+<meta property="article:tag" content="linux"/>
+<meta property="article:tag" content="qt"/>
+<meta property="og:image" content="/theme/images/post-bg.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "Setup Qt5 w/o QtCreator in Linux",
+  "headline": "Setup Qt5 w/o QtCreator in Linux",
+  "datePublished": "2020-09-09 22:30:00+05:30",
+  "dateModified": "2020-09-09 22:30:00+05:30",
+  "author": {
+    "@type": "Person",
+    "name": "satyajit-ghana",
+    "url": "/author/satyajit-ghana"
+  },
+  "image": "/theme/images/post-bg.jpg",
+  "url": "/2020/09/setup-qt5-without-qtcreator.html",
+  "description": "I generally dont like a special IDE for making a GUI application, like QtCreator, i wanted to have more control and use Makfile and make..."
+}
+</script>
+</head>
+<!-- TODO : Body class -->
+<body class="home-template">
+
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
+
+              <li role="presentation"><a href="/pages/about/">About</a></li>
+
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">Setup Qt5 w/o QtCreator in Linux</h1>
+        <!-- TODO : Proper class for headline -->
+        <span class="post-meta">
+                <a href="/author/satyajit-ghana">Satyajit Ghana</a>
+            | <time datetime="09 Sep 2020">09 Sep 2020</time>
+        </span>
+        <!-- TODO : Modified check -->
+            <span class="post-meta"> | Updated on 09 Sep 2020</span>
+            <div class="post-cover cover" style="background-image: url('/theme/images/post-bg.jpg')">
+      </div>
+    </header>
+
+  <section id="wrapper">
+    <a class="hidden-close"></a>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <h1>Setup Qt5 w/o QtCreator on Linux (Debian)</h1>
+<p>I generally dont like a special IDE for making a GUI application, like QtCreator, i wanted to have more control and use Makfile and make to build the Qt Application. So this is a guide on how i did that.</p>
+<p>For anybody who doesn't know:
+QTCreator is an IDE (Integrated Development Environment) for QT. It is developed and maintained by the same people who develop the QT libraries and is an excellent piece of software to use for quickly building QT based applications.</p>
+<p>Moreover the Qt Installer is huge and has a lot of packages that i don't really need, i wanted just the dev packages and qmake so that i could do everything on the terminal. I am using a Raspberry Pi for this tutorial, but this guide will work for any Linux based on Debian, prolly similar to other distors.</p>
+<p>I am assuming you have g++ and make installed</p>
+<h2>Install the dev sources for simple Qt5 applications</h2>
+<div class="highlight"><pre><span></span><code>sudo apt install qt5-default qt5declarative5-dev
+</code></pre></div>
+
+
+<h2>Create the application source files</h2>
+<p>create a folder <code>QtTest</code> and place these files there (refer to the link in references on explanation of these)</p>
+<p>main.cpp</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;QtWidgets&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;mainwidget.h&quot;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="c1">// Creates an instance of QApplication</span>
+    <span class="n">QApplication</span> <span class="n">a</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+
+    <span class="c1">// This is our MainWidget class containing our GUI and functionality</span>
+    <span class="n">MainWidget</span> <span class="n">w</span><span class="p">;</span>
+    <span class="n">w</span><span class="p">.</span><span class="n">show</span><span class="p">();</span> <span class="c1">// Show main window</span>
+
+    <span class="c1">// run the application and return execs() return value/code</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">exec</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>mainwidget.h</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#ifndef MAINWIDGET_H</span>
+<span class="cp">#define MAINWIDGET_H</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;QWidget&gt;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">QPushButton</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">QTextBrowser</span><span class="p">;</span>
+
+<span class="c1">// This is the declaration of our MainWidget class</span>
+<span class="c1">// The definition/implementation is in mainwidget.cpp</span>
+<span class="k">class</span> <span class="nc">MainWidget</span> <span class="o">:</span> <span class="k">public</span> <span class="n">QWidget</span>
+<span class="p">{</span>
+    <span class="n">Q_OBJECT</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">explicit</span> <span class="n">MainWidget</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//Constructor</span>
+    <span class="o">~</span><span class="n">MainWidget</span><span class="p">();</span> <span class="c1">// Destructor</span>
+
+<span class="k">private</span><span class="o">:</span>
+   <span class="n">QPushButton</span><span class="o">*</span> <span class="n">button_</span><span class="p">;</span>
+   <span class="n">QTextBrowser</span><span class="o">*</span> <span class="n">textBrowser_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="cp">#endif </span><span class="c1">// MAINWIDGET_H</span>
+</code></pre></div>
+
+
+<p>mainwidget.cpp</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;QtWidgets&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;mainwidget.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Constructor for main widget</span>
+<span class="n">MainWidget</span><span class="o">::</span><span class="n">MainWidget</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span>
+    <span class="n">QWidget</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">button_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QPushButton</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Push Me!&quot;</span><span class="p">));</span>
+   <span class="n">textBrowser_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QTextBrowser</span><span class="p">();</span>
+
+   <span class="n">QGridLayout</span> <span class="o">*</span><span class="n">mainLayout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QGridLayout</span><span class="p">;</span>
+   <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addWidget</span><span class="p">(</span><span class="n">button_</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+   <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addWidget</span><span class="p">(</span><span class="n">textBrowser_</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+   <span class="n">setLayout</span><span class="p">(</span><span class="n">mainLayout</span><span class="p">);</span>
+   <span class="n">setWindowTitle</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Connecting buttons to processes..&quot;</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Destructor</span>
+<span class="n">MainWidget</span><span class="o">::~</span><span class="n">MainWidget</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="k">delete</span> <span class="n">button_</span><span class="p">;</span>
+   <span class="k">delete</span> <span class="n">textBrowser_</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<h2>Build !</h2>
+<p>Generate the build files</p>
+<div class="highlight"><pre><span></span><code>qmake -project
+</code></pre></div>
+
+
+<p>This will generate a <code>QtTest.pro</code> file, which will be used by qmake to create the Makefile</p>
+<p>qmake doesn't really detect the dependencies so we will add it ourselves i.e. <code>QT += widgets</code></p>
+<p><code>QtTest.pro</code></p>
+<div class="highlight"><pre><span></span><code>######################################################################
+# Automatically generated by qmake (3.1) Wed Sep 9 22:00:28 2020
+######################################################################
+
+TEMPLATE = app
+TARGET = QtTest
+INCLUDEPATH += .
+
+QT += widgets
+
+# The following define makes your compiler warn you if you use any
+# feature of Qt which has been marked as deprecated (the exact warnings
+# depend on your compiler). Please consult the documentation of the
+# deprecated API in order to know how to port your code away from it.
+DEFINES += QT_DEPRECATED_WARNINGS
+
+# You can also make your code fail to compile if you use deprecated APIs.
+# In order to do so, uncomment the following line.
+# You can also select to disable deprecated APIs only up to a certain version of Qt.
+#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+
+# Input
+HEADERS += mainwidget.h
+SOURCES += main.cpp mainwidget.cpp
+</code></pre></div>
+
+
+<h3>Run this to generate the Makefile</h3>
+<div class="highlight"><pre><span></span><code>qmake QtTest.pro
+</code></pre></div>
+
+
+<h3>Make Make Make !</h3>
+<div class="highlight"><pre><span></span><code>make
+</code></pre></div>
+
+
+<h3>Run !</h3>
+<div class="highlight"><pre><span></span><code>./QtTest
+</code></pre></div>
+
+
+<p>And here it is</p>
+<p><img alt="run" src="/2020/09/run.png"></p>
+<h2>References</h2>
+<ul>
+<li><a href="https://wiki.qt.io/Install_Qt_5_on_Ubuntu">https://wiki.qt.io/Install_Qt_5_on_Ubuntu</a></li>
+<li><a href="https://www.linux.org/threads/c-tutorial-create-qt-applications-without-qtcreator.18409/">https://www.linux.org/threads/c-tutorial-create-qt-applications-without-qtcreator.18409/</a></li>
+</ul>
+            </section>
+
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=Setup Qt5 w/o QtCreator in Linux&amp;url=/2020/09/setup-qt5-without-qtcreator.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=/2020/09/setup-qt5-without-qtcreator.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=/2020/09/setup-qt5-without-qtcreator.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+                <aside class="post-tags">
+<a href="/tag/raspberry-pi">raspberry pi</a><a href="/tag/vscode">vscode</a><a href="/tag/linux">linux</a><a href="/tag/qt">qt</a>                </aside>
+
+                <div class="clear"></div>
+
+                <aside class="post-author">
+
+
+                        <figure class="post-author-avatar">
+                            <img src="/assets/images/avatar.jpg" alt="Satyajit Ghana" />
+                        </figure>
+                    <div class="post-author-bio">
+                        <h4 class="post-author-name"><a href="/author/satyajit-ghana">Satyajit Ghana</a></h4>
+                            <p class="post-author-about">ek hee moto: apun ko bohot kuch seekhna hai aur bohot kum waqt mai</p>
+                            <span class="post-author-location"><i class="ic ic-location"></i> Bangalore</span>
+                            <span class="post-author-website"><a href="http://github.com/satyajitghana"><i class="ic ic-link"></i> Website</a></span>
+                        <!-- Social linkes in alphabet order. -->
+                            <span class="post-author-github"><a target="_blank" href="https://github.com/satyajitghana"><i class="ic ic-link"></i> GitHub</a></span>
+                            <span class="post-author-linkedin"><a target="_blank" href="https://www.linkedin.com/in/satyajitghana"><i class="ic ic-link"></i> LinkedIn</a></span>
+                    </div>
+                    <div class="clear"></div>
+                </aside>
+
+                </section>
+
+
+                <aside class="post-nav">
+                    <a class="post-nav-prev" href="/2020/09/raspberry-pi-vscode.html">
+                        <section class="post-nav-teaser">
+                            <i class="ic ic-arrow-right"></i>
+                                <h2 class="post-nav-title">Installing VSCode in Raspberry Pi</h2>
+                            <p class="post-nav-excerpt">Simple Tutorial on installing VSCode in Raspberry Pi</p>
+                        </section>
+                    </a>
+                    <div class="clear"></div>
+                </aside>
+
+            </div>
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
+
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script type="text/javascript" src="/theme/js/script.js"></script>
+
+</body>
+</html>
