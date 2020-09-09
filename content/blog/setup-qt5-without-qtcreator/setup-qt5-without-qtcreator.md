@@ -167,7 +167,7 @@ make
 
 And here it is
 
-![run]({attach}run.png)
+![run]({attach}run-qt5-app.png)
 
 ## References
 
