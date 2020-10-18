@@ -1,4 +1,4 @@
-# [`satyajitghana.github.io`](satyajitghana.github.io)
+# [`satyajitghana.github.io`](https://satyajitghana.github.io)
 
 Hey, this is my personal blog and website !
 
