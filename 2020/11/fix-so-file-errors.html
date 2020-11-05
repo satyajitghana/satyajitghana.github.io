@@ -168,25 +168,29 @@ make<span class="o">[</span><span class="m">1</span><span class="o">]</span>: **
 
 <ol>
 <li>Make sure that the library is installed, whichever .so file it is, google it, you'll get like lib-something-dev package needs to be installed, install that first</li>
-<li>Run <code>apt-file search</code>
-  <code>shell
+<li>Run <code>apt-file search</code></li>
+</ol>
+<p><code>shell
   nano3@nano3-desktop:~/satyajit/opencv-4.2.0/build$ apt-file search libfreetype.so
   libfreetype6: /usr/lib/aarch64-linux-gnu/libfreetype.so.6
   libfreetype6: /usr/lib/aarch64-linux-gnu/libfreetype.so.6.15.0
-  libfreetype6-dev: /usr/lib/aarch64-linux-gnu/libfreetype.so</code></li>
-<li>delete old symlink and create new
-  <code>shell
+  libfreetype6-dev: /usr/lib/aarch64-linux-gnu/libfreetype.so</code></p>
+<ol>
+<li>delete old symlink and create new</li>
+</ol>
+<p><code>shell
   nano3@nano3-desktop:~/satyajit/opencv-4.2.0/build$ sudo rm /usr/lib/libfreetype.so
   [sudo] password for nano3:
   nano3@nano3-desktop:~/satyajit/opencv-4.2.0/build$ ln -s /usr/lib/aarch64-linux-gnu/libfreetype.so /usr/lib/libfreetype.
   so
   ln: failed to create symbolic link '/usr/lib/libfreetype.so': Permission denied
   nano3@nano3-desktop:~/satyajit/opencv-4.2.0/build$ sudo !!
-  sudo ln -s /usr/lib/aarch64-linux-gnu/libfreetype.so /usr/lib/libfreetype.so</code></li>
-<li>That's it, now that we have properly linked our <code>.so</code> file, run make again !
-  <code>shell
-  make -j4</code></li>
+  sudo ln -s /usr/lib/aarch64-linux-gnu/libfreetype.so /usr/lib/libfreetype.so</code></p>
+<ol>
+<li>That's it, now that we have properly linked our <code>.so</code> file, run make again !</li>
 </ol>
+<p><code>shell
+  make -j4</code></p>
 <p>That's it for now !</p>
             </section>
 
