@@ -32,13 +32,16 @@ nano3@nano3-desktop:~/satyajit/opencv-4.2.0/build$ file /usr/lib/libfreetype.so
 
 1. Make sure that the library is installed, whichever .so file it is, google it, you'll get like lib-something-dev package needs to be installed, install that first
 2. Run `apt-file search`
+  
   ```shell
   nano3@nano3-desktop:~/satyajit/opencv-4.2.0/build$ apt-file search libfreetype.so
   libfreetype6: /usr/lib/aarch64-linux-gnu/libfreetype.so.6
   libfreetype6: /usr/lib/aarch64-linux-gnu/libfreetype.so.6.15.0
   libfreetype6-dev: /usr/lib/aarch64-linux-gnu/libfreetype.so
   ```
+  
 3. delete old symlink and create new
+  
   ```shell
   nano3@nano3-desktop:~/satyajit/opencv-4.2.0/build$ sudo rm /usr/lib/libfreetype.so
   [sudo] password for nano3:
@@ -48,7 +51,9 @@ nano3@nano3-desktop:~/satyajit/opencv-4.2.0/build$ file /usr/lib/libfreetype.so
   nano3@nano3-desktop:~/satyajit/opencv-4.2.0/build$ sudo !!
   sudo ln -s /usr/lib/aarch64-linux-gnu/libfreetype.so /usr/lib/libfreetype.so
   ```
+  
 4. That's it, now that we have properly linked our `.so` file, run make again !
+  
   ```shell
   make -j4
   ```
