@@ -5,42 +5,49 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2020-10-18T10:55:48-00:00</lastmod>
+<lastmod>2020-11-05T09:28:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2020-10-18T10:55:48-00:00</lastmod>
+<lastmod>2020-11-05T09:28:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2020-10-18T10:55:48-00:00</lastmod>
+<lastmod>2020-11-05T09:28:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/authors.html</loc>
-<lastmod>2020-10-18T10:55:48-00:00</lastmod>
+<lastmod>2020-11-05T09:28:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2020-10-18T10:55:48-00:00</lastmod>
+<lastmod>2020-11-05T09:28:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/pages/about/</loc>
-<lastmod>2020-10-18T10:53:28+05:30</lastmod>
+<lastmod>2020-11-05T09:27:41+05:30</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/2020/11/fix-so-file-errors.html</loc>
+<lastmod>2020-11-05T14:50:00+05:30</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -116,6 +123,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/category/bug-fix</loc>
+<lastmod>2020-11-05T14:50:00+05:53</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/category/experience</loc>
 <lastmod>2020-10-16T19:50:00+05:53</lastmod>
 <changefreq>daily</changefreq>
@@ -125,6 +139,48 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/category/tutorial</loc>
 <lastmod>2020-09-09T22:30:00+05:53</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/bug</loc>
+<lastmod>2020-11-05T14:50:00+05:53</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/make</loc>
+<lastmod>2020-11-05T14:50:00+05:53</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/opencv</loc>
+<lastmod>2020-11-05T14:50:00+05:53</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/jetson-nano</loc>
+<lastmod>2020-11-05T14:50:00+05:53</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/cmake</loc>
+<lastmod>2020-11-05T14:50:00+05:53</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/build-errors</loc>
+<lastmod>2020-11-05T14:50:00+05:53</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -271,7 +327,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/satyajit-ghana</loc>
-<lastmod>2020-10-16T19:50:00+05:53</lastmod>
+<lastmod>2020-11-05T14:50:00+05:53</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
