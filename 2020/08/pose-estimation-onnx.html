@@ -168,7 +168,7 @@
 <p>As you can see that a simple conv network has got a pretty good accuracy.</p>
 <p>Enough of the model talk ! (i recommend reading the beautiful paper i referred above), Now let’s get to do some inferencing on the model and see what it outputs. Throughout this story i will be using <a href="http://colab.research.google.com">Google Colab</a> for running everything.</p>
 <p>Start by cloning the <a href="https://github.com/microsoft/human-pose-estimation.pytorch">human-pose-estimation.pytorch</a> repository</p>
-<div class="highlight"><pre><span></span><code><span class="err">! git clone https://github.com/microsoft/human-pose-estimation.pytorch &amp;&amp; cd human-pose-estimation.pytorch &amp;&amp; git checkout 18f1d0fa5b5db7fe08de640610f3fdbdbed8fb2f</span>
+<div class="highlight"><pre><span></span><code>! git clone https://github.com/microsoft/human-pose-estimation.pytorch &amp;&amp; cd human-pose-estimation.pytorch &amp;&amp; git checkout 18f1d0fa5b5db7fe08de640610f3fdbdbed8fb2f
 </code></pre></div>
 
 
@@ -186,16 +186,16 @@
 <a href="https://drive.google.com/drive/folders/1g_6Hv33FG6rYRVLXx1SZaaHj871THrRW"><strong>pose_mpii - Google Drive</strong>
 <em>Edit description</em>drive.google.com</a></p>
 <p>set the CONFIG_FILE and MODEL_PATH variables appropriately</p>
-<div class="highlight"><pre><span></span><code><span class="n">CONFIG_FILE</span> <span class="o">=</span> <span class="s1">&#39;/content/human-pose-estimation.pytorch/experiments/mpii/resnet50/256x256_d256x3_adam_lr1e-3.yaml&#39;</span>
+<div class="highlight"><pre><span></span><code>CONFIG_FILE = &#39;/content/human-pose-estimation.pytorch/experiments/mpii/resnet50/256x256_d256x3_adam_lr1e-3.yaml&#39;
 
-<span class="n">MODEL_PATH</span> <span class="o">=</span> <span class="s1">&#39;/content/pose_resnet_50_256x256.pth.tar&#39;</span>
+MODEL_PATH = &#39;/content/pose_resnet_50_256x256.pth.tar&#39;
 </code></pre></div>
 
 
 <p>update the config file</p>
-<div class="highlight"><pre><span></span><code><span class="n">update_config</span><span class="p">(</span><span class="n">CONFIG_FILE</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>update_config(CONFIG_FILE)
 
-<span class="n">config</span><span class="p">.</span><span class="n">GPUS</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="o">#</span> <span class="n">we</span> <span class="k">are</span> <span class="n">running</span> <span class="k">on</span> <span class="n">CPU</span>
+config.GPUS = &#39;&#39; # we are running on CPU
 </code></pre></div>
 
 
@@ -227,15 +227,15 @@
 <p><img alt="" src="https://cdn-images-1.medium.com/max/2000/1*OZA-la4uErLMTK--xGR6Tg.png"></p>
 <p>ONNX is an open format built to represent machine learning models. ONNX defines a common set of operators — the building blocks of machine learning and deep learning models - and a common file format to enable AI developers to use models with a variety of frameworks, tools, runtimes, and compilers.</p>
 <p>Install onnx and onnxruntime, we’ll need these</p>
-<div class="highlight"><pre><span></span><code><span class="err">! pip install onnx onnxruntime</span>
+<div class="highlight"><pre><span></span><code>! pip install onnx onnxruntime
 </code></pre></div>
 
 
 <script src="https://gist.github.com/satyajitghana/b8007e6174e621de99ec004045eb6677.js"></script>
 
-<div class="highlight"><pre><span></span><code><span class="n">print_size_of_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>print_size_of_model(model)
 
-<span class="k">Size</span> <span class="p">(</span><span class="n">MB</span><span class="p">):</span> <span class="mi">136</span><span class="p">.</span><span class="mi">326509</span>
+Size (MB): 136.326509
 </code></pre></div>
 
 
@@ -245,7 +245,7 @@
 <em>In this tutorial, we describe how to convert a model defined in PyTorch into the ONNX format and then run it with ONNX…</em>pytorch.org</a></p>
 <script src="https://gist.github.com/satyajitghana/81f56cfc1413b6a260c08bfa12a8fde7.js"></script>
 
-<div class="highlight"><pre><span></span><code><span class="err">Size (MB): 136.247923</span>
+<div class="highlight"><pre><span></span><code>Size (MB): 136.247923
 </code></pre></div>
 
 
@@ -256,7 +256,7 @@
 <p>Well well well, i did take a look at that <a href="https://pytorch.org/tutorials/intermediate/quantized_transfer_learning_tutorial.html">here</a>, the issue being, but take a look at <a href="https://discuss.pytorch.org/t/am-i-correct-in-concluding-that-resnet-that-comes-with-pytorch-cant-be-quantized-by-pytorch/82405">this</a>, TL DR; the models we have right now cannot be quantized, only a few very special models can be like BERT, LSTM, or else you have to modify your model and add some special layers.</p>
 <script src="https://gist.github.com/satyajitghana/f093f237e4fa0f28e06b4cebeee8fd4b.js"></script>
 
-<div class="highlight"><pre><span></span><code><span class="err">Size (MB): 65.933789</span>
+<div class="highlight"><pre><span></span><code>Size (MB): 65.933789
 </code></pre></div>
 
 
