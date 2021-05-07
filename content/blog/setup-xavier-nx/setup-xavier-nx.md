@@ -112,3 +112,17 @@ When i had got this board, we had nothing installed, and everything was build fr
 But the SDK Manager makes it really easy, Opencv 4+ installed quite easily ! :)
 
 Love the SDK Manager
+
+## Some useful links
+
+- [https://forums.developer.nvidia.com/t/system-throttled-due-to-over-current/167029/59](https://forums.developer.nvidia.com/t/system-throttled-due-to-over-current/167029/59)
+
+- [https://www.jetsonhacks.com/2020/05/29/jetson-xavier-nx-run-from-ssd/](https://www.jetsonhacks.com/2020/05/29/jetson-xavier-nx-run-from-ssd/)
+
+- [https://forums.developer.nvidia.com/t/recovery-interface/146709/3](https://forums.developer.nvidia.com/t/recovery-interface/146709/3)
+
+- [https://github.com/atinfinity/sdk_manager_docker/issues/6](https://github.com/atinfinity/sdk_manager_docker/issues/6)
+
+- [https://docs.nvidia.com/jetson/l4t/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/updating_jetson_and_host.html](https://docs.nvidia.com/jetson/l4t/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/updating_jetson_and_host.html)
+
+- [https://developer.nvidia.com/nvidia-sdk-manager](https://developer.nvidia.com/nvidia-sdk-manager)
