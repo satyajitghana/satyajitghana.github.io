@@ -83,11 +83,11 @@ Also the Jerson SDK Components will be installed via Network SSH, and the Jetson
 
 Also because all of these components will NOT install in 15GB eMMC memory, and it will run out of space.
 
-![s](2021-05-07_12-28.png)
+![s]({attach}2021-05-07_12-28.png)
 
 Here's the terminal
 
-![s](2021-05-07_13-07.png)
+![s]({attach}2021-05-07_13-07.png)
 
 
 > After flashing the latest JetPack, DO NOT INSTALL ANYTHING ON YOUR OWN, NOT UNLESS YOU INSTALL ALL THOSE SDK COMPONENTS FROM NVIDIA. IT WILL BREAK YOUR INSTALLATION
