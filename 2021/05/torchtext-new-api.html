@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<head>
+    <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>TorchText New API Changes</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+  <link href="/" rel="canonical" />
+
+  <!-- Feed -->
+
+  <link href="/theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="/theme/css/code_blocks/github.css" rel="stylesheet">
+
+    <!-- CSS specified by the user -->
+
+
+    <link href="/assets/css/myblog.css" type="text/css" rel="stylesheet" />
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+  <link href="/2021/05/torchtext-new-api.html" rel="canonical" />
+
+    <meta name="description" content="TorchText has now made many of their api's legacy, this post is tracking down the new APIs introduced to torchtext">
+
+    <meta name="author" content="satyajit-ghana">
+
+    <meta name="tags" content="api">
+    <meta name="tags" content="pytorch">
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Satyajit Ghana"/>
+<meta property="og:title" content="TorchText New API Changes"/>
+<meta property="og:description" content="TorchText has now made many of their api's legacy, this post is tracking down the new APIs introduced to torchtext"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/2021/05/torchtext-new-api.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2021-05-31 13:00:00+05:30"/>
+<meta property="article:modified_time" content="2020-05-31 13:00:00+05:30"/>
+<meta property="article:author" content="/author/satyajit-ghana">
+<meta property="article:section" content="pytorch"/>
+<meta property="article:tag" content="api"/>
+<meta property="article:tag" content="pytorch"/>
+<meta property="og:image" content="/theme/images/post-bg.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "TorchText New API Changes",
+  "headline": "TorchText New API Changes",
+  "datePublished": "2021-05-31 13:00:00+05:30",
+  "dateModified": "2020-05-31 13:00:00+05:30",
+  "author": {
+    "@type": "Person",
+    "name": "satyajit-ghana",
+    "url": "/author/satyajit-ghana"
+  },
+  "image": "/theme/images/post-bg.jpg",
+  "url": "/2021/05/torchtext-new-api.html",
+  "description": "TorchText has now made many of their api's legacy, this post is tracking down the new APIs introduced to torchtext"
+}
+</script>
+</head>
+<!-- TODO : Body class -->
+<body class="home-template">
+
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
+
+              <li role="presentation"><a href="/pages/about/">About</a></li>
+
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">TorchText New API Changes</h1>
+        <!-- TODO : Proper class for headline -->
+        <span class="post-meta">
+                <a href="/author/satyajit-ghana">Satyajit Ghana</a>
+            | <time datetime="31 May 2021">31 May 2021</time>
+        </span>
+        <!-- TODO : Modified check -->
+            <span class="post-meta"> | Updated on 31 May 2020</span>
+            <div class="post-cover cover" style="background-image: url('/theme/images/post-bg.jpg')">
+      </div>
+    </header>
+
+  <section id="wrapper">
+    <a class="hidden-close"></a>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <h1>TorchText New API Changes</h1>
+<h2>Torchtext 0.9.0 release note</h2>
+<p>Based on the feedback from users, there are several issues existing in torchtext, including</p>
+<p>Several components and functionals are unclear and difficult to adopt. For example, Field class couples tokenizer, vocabulary, split, batching and sampling, padding, and numericalization together. The current Field class works as a "black box", and users are confused about what's going on within the class. Instead, those components should be divided into several basic building blocks. This is more consistent with PyTorch core library, which grants users the freedom to build the models and pipelines with orthogonal components.
+Incompatible with DataLoader and Sampler in torch.utils.data. The current datasets in torchtext are not compatible with PyTorch core library. Some custom modules/functions in torchtext (e.g. Iterator, Batch, splits) should be replaced by the corresponding modules in torch.utils.data.
+New datasets in torchtext.experimental.datasets
+We have re-written several datasets in torchtext.experimental.datasets which were using the new abstractions. The old version of the datasets are still available in torchtext.datasets and the new datasets are opt-in.</p>
+<ul>
+<li>Sentiment analysis dataset (#651)</li>
+<li>IMDB</li>
+<li>Language modeling datasets (#624), including</li>
+<li>WikiText2</li>
+<li>WikiText103</li>
+<li>PennTreebank</li>
+</ul>
+<h3>Case study for IMDB dataset</h3>
+<p>API for new datasets</p>
+<p>To load the new datasets, simply call the dataset API, as follow:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">torchtext.experimental.datasets</span> <span class="kn">import</span> <span class="n">IMDB</span>
+<span class="n">train_dataset</span><span class="p">,</span> <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">IMDB</span><span class="p">()</span>
+</code></pre></div>
+
+
+<p>To specify a tokenizer:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">torchtext.data.utils</span> <span class="kn">import</span> <span class="n">get_tokenizer</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">get_tokenizer</span><span class="p">(</span><span class="s2">&quot;spacy&quot;</span><span class="p">)</span>
+<span class="n">train_dataset</span><span class="p">,</span> <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">IMDB</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>If you just need the test set (must pass a Vocab object!):</p>
+<div class="highlight"><pre><span></span><code>vocab = train_dataset.get_vocab()
+test_dataset, = IMDB(tokenizer=tokenizer, vocab=vocab, data_select=&#39;test&#39;)
+</code></pre></div>
+
+
+<p>Legacy code</p>
+<p>The old IMDB dataset is still available in the folder torchtext.datasets. You can use the legacy datasets, as follow:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torchtext.data</span> <span class="k">as</span> <span class="nn">data</span>
+<span class="n">TEXT</span> <span class="o">=</span> <span class="n">torchtext</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_lengths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">LABEL</span> <span class="o">=</span> <span class="n">torchtext</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">sequential</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">torchtext</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">IMDB</span><span class="o">.</span><span class="n">splits</span><span class="p">(</span><span class="n">TEXT</span><span class="p">,</span> <span class="n">LABEL</span><span class="p">)</span>
+</code></pre></div>
+
+
+<h3>Difference</h3>
+<p>With the old pattern, users have to create a Field object including a specific tokenizer. In the new dataset API, user can pass a custom tokenizer directly to the dataset constructor. A custom tokenizer defines the method to convert a string to a list of tokens</p>
+<p>from torchtext.data.utils import get_tokenizer</p>
+<h3>Old pattern</h3>
+<div class="highlight"><pre><span></span><code>TEXT = torchtext.data.Field(tokenize=get_tokenizer(&quot;basic_english&quot;))
+</code></pre></div>
+
+
+<h4>New pattern</h4>
+<div class="highlight"><pre><span></span><code>train_dataset, test_dataset = IMDB(tokenizer=get_tokenizer(&quot;spacy&quot;))
+</code></pre></div>
+
+
+<p>In the old dataset, vocab object is associated with Field class, which is not flexible enough to accept a pre-trained vocab object. In the new dataset, the vocab object can be obtained by</p>
+<div class="highlight"><pre><span></span><code>vocab = train_dataset.get_vocab()
+new_vocab = torchtext.vocab.Vocab(counter=vocab.freqs, max_size=1000, min_freq=10)
+</code></pre></div>
+
+
+<p>and apply to generate other new datasets.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">torchtext.experimental.datasets</span> <span class="kn">import</span> <span class="n">WikiText2</span>
+<span class="n">train_dataset</span><span class="p">,</span> <span class="n">test_dataset</span><span class="p">,</span> <span class="n">valid_dataset</span> <span class="o">=</span> <span class="n">WikiText2</span><span class="p">(</span><span class="n">vocab</span><span class="o">=</span><span class="n">new_vocab</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>The datasets with the new pattern return a tensor of token IDs, instead of tokens in the old pattern. If users would like to retrieve the tokens, simply use the following command:</p>
+<div class="highlight"><pre><span></span><code>train_vocab = train_dataset.get_vocab()
+</code></pre></div>
+
+
+<h3>label and text are saved as a tuple</h3>
+<div class="highlight"><pre><span></span><code><span class="n">tokens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">train_vocab.itos[id</span><span class="o">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">train_dataset</span><span class="o">[</span><span class="n">0</span><span class="o">][</span><span class="n">1</span><span class="o">]</span><span class="err">]</span><span class="w"></span>
+</code></pre></div>
+
+
+<p>Unlike the old pattern using BucketIterator.splits, users are encouraged to use torch.utils.data.DataLoader to generate batches of data. You can specify how to batch and pad the samples with a custom function passed to collate_fn. Here is an example to pad sequences with similar lengths and load data through DataLoader. To generate random samples, turn on the shuffle flag in DataLoader. Otherwise, a sequential sampler will be automatically constructed.</p>
+<h3>Generate a list of tuples of text length, index, label, text</h3>
+<div class="highlight"><pre><span></span><code><span class="n">data_len</span> <span class="o">=</span> <span class="p">[(</span><span class="n">len</span><span class="p">(</span><span class="n">txt</span><span class="p">),</span> <span class="n">idx</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">txt</span><span class="p">)</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">txt</span><span class="p">)</span> <span class="ow">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)]</span>
+<span class="n">data_len</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="c1"># sort by length and pad sequences with similar lengths</span>
+</code></pre></div>
+
+
+<h3>Generate the pad id</h3>
+<div class="highlight"><pre><span></span><code>pad_id = train_dataset.get_vocab()[&#39;&lt;pad&gt;&#39;]
+</code></pre></div>
+
+
+<h3>Generate 8x8 batches</h3>
+<h3>Pad sequences with similar lengths</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="k">def</span> <span class="nf">pad_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Find max length of the mini-batch</span>
+    <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">))[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">label_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">))[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">txt_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">))[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">padded_tensors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">txt</span><span class="p">,</span> \
+            <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">pad_id</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)))</span><span class="o">.</span><span class="n">long</span><span class="p">()))</span> \
+            <span class="k">for</span> <span class="n">txt</span> <span class="ow">in</span> <span class="n">txt_list</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">padded_tensors</span><span class="p">,</span> <span class="n">label_list</span>
+
+<span class="n">dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">data_len</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">collate_fn</span><span class="o">=</span><span class="n">pad_data</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">txt</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">label</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Randomly split a dataset into non-overlapping new datasets of given lengths.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">torchtext.experimental.datasets</span> <span class="kn">import</span> <span class="n">IMDB</span>
+<span class="n">train_dataset</span><span class="p">,</span> <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">IMDB</span><span class="p">()</span>
+<span class="n">train_subset</span><span class="p">,</span> <span class="n">valid_subset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="p">[</span><span class="mi">15000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">])</span>
+</code></pre></div>
+
+
+<p>There's a Migration Guide as well: <a href="https://github.com/pytorch/text/blob/master/examples/legacy_tutorial/migration_tutorial.ipynb">Guide</a></p>
+            </section>
+
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=TorchText New API Changes&amp;url=/2021/05/torchtext-new-api.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=/2021/05/torchtext-new-api.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=/2021/05/torchtext-new-api.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+                <aside class="post-tags">
+<a href="/tag/api">api</a><a href="/tag/pytorch">pytorch</a>                </aside>
+
+                <div class="clear"></div>
+
+                <aside class="post-author">
+
+
+                        <figure class="post-author-avatar">
+                            <img src="/assets/images/avatar.jpg" alt="Satyajit Ghana" />
+                        </figure>
+                    <div class="post-author-bio">
+                        <h4 class="post-author-name"><a href="/author/satyajit-ghana">Satyajit Ghana</a></h4>
+                            <p class="post-author-about">ek hee moto: apun ko bohot kuch seekhna hai aur bohot kum waqt mai</p>
+                            <span class="post-author-location"><i class="ic ic-location"></i> Bangalore</span>
+                            <span class="post-author-website"><a href="http://github.com/satyajitghana"><i class="ic ic-link"></i> Website</a></span>
+                        <!-- Social linkes in alphabet order. -->
+                            <span class="post-author-github"><a target="_blank" href="https://github.com/satyajitghana"><i class="ic ic-link"></i> GitHub</a></span>
+                            <span class="post-author-linkedin"><a target="_blank" href="https://www.linkedin.com/in/satyajitghana"><i class="ic ic-link"></i> LinkedIn</a></span>
+                    </div>
+                    <div class="clear"></div>
+                </aside>
+
+                </section>
+
+
+                <aside class="post-nav">
+                    <a class="post-nav-prev" href="/2021/05/setup-xavier-nx.html">
+                        <section class="post-nav-teaser">
+                            <i class="ic ic-arrow-right"></i>
+                                <h2 class="post-nav-title">Setup Xavier NX Board w/ NVMe</h2>
+                            <p class="post-nav-excerpt">Setting up Xavier was a pain, partially because i wasn't aware of how to use Nvidia...</p>
+                        </section>
+                    </a>
+                    <div class="clear"></div>
+                </aside>
+
+            </div>
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
+
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script type="text/javascript" src="/theme/js/script.js"></script>
+
+</body>
+</html>
