@@ -93,6 +93,7 @@ Here are some tutorials on ZipFile
 
 * [https://pymotw.com/2/zipfile/](https://pymotw.com/2/zipfile/)
 * [https://www.geeksforgeeks.org/working-zip-files-python/](https://www.geeksforgeeks.org/working-zip-files-python/)
+* [https://www.scaler.com/topics/zip-in-python/](https://www.scaler.com/topics/zip-in-python/)
 
 ## **That’s all Folks!**
 
