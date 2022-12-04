@@ -9,3 +9,4 @@ Pillow==9.0.1
 pysvg==0.2.2
 pysvg-py3==0.2.2.post3
 webassets==2.0
+markupsafe==2.0.1
