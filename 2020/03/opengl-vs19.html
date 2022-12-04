@@ -187,39 +187,39 @@ Add <code>freeglut.lib</code> to <code>Additional Dependencies</code></p>
 <ol>
 <li>Replace the code in your <code>&lt;PROJECT_NAME&gt;.cpp</code> (in my case <code>OpenGL_HelloWorld.cpp</code>) with the below code</li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;GL/freeglut.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;GL/freeglut.h&gt;</span><span class="cp"></span>
 
-<span class="kt">void</span> <span class="nf">display</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-    <span class="cm">/* clear window */</span>
-    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* clear window */</span><span class="w"></span>
+<span class="w">    </span><span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span><span class="w"></span>
 
-    <span class="cm">/* draw scene */</span>
-    <span class="n">glutSolidTeapot</span><span class="p">(</span><span class="mf">.5</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* draw scene */</span><span class="w"></span>
+<span class="w">    </span><span class="n">glutSolidTeapot</span><span class="p">(</span><span class="mf">.5</span><span class="p">);</span><span class="w"></span>
 
-    <span class="cm">/* flush drawing routines to the window */</span>
-    <span class="n">glFlush</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* flush drawing routines to the window */</span><span class="w"></span>
+<span class="w">    </span><span class="n">glFlush</span><span class="p">();</span><span class="w"></span>
 
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-    <span class="cm">/* initialize GLUT, using any commandline parameters passed to the</span>
-<span class="cm">       program */</span>
-    <span class="n">glutInit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* initialize GLUT, using any commandline parameters passed to the</span>
+<span class="cm">       program */</span><span class="w"></span>
+<span class="w">    </span><span class="n">glutInit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span><span class="w"></span>
 
-    <span class="cm">/* setup the size, position, and display mode for new windows */</span>
-    <span class="n">glutInitWindowSize</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
-    <span class="n">glutInitWindowPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="n">glutInitDisplayMode</span><span class="p">(</span><span class="n">GLUT_RGB</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* setup the size, position, and display mode for new windows */</span><span class="w"></span>
+<span class="w">    </span><span class="n">glutInitWindowSize</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">glutInitWindowPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">glutInitDisplayMode</span><span class="p">(</span><span class="n">GLUT_RGB</span><span class="p">);</span><span class="w"></span>
 
-    <span class="cm">/* create and set up a window */</span>
-    <span class="n">glutCreateWindow</span><span class="p">(</span><span class="s">&quot;hello, teapot!&quot;</span><span class="p">);</span>
-    <span class="n">glutDisplayFunc</span><span class="p">(</span><span class="n">display</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* create and set up a window */</span><span class="w"></span>
+<span class="w">    </span><span class="n">glutCreateWindow</span><span class="p">(</span><span class="s">&quot;hello, teapot!&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">glutDisplayFunc</span><span class="p">(</span><span class="n">display</span><span class="p">);</span><span class="w"></span>
 
-    <span class="cm">/* tell GLUT to wait for events */</span>
-    <span class="n">glutMainLoop</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="cm">/* tell GLUT to wait for events */</span><span class="w"></span>
+<span class="w">    </span><span class="n">glutMainLoop</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
 

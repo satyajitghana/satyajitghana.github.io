@@ -157,21 +157,21 @@ QTCreator is an IDE (Integrated Development Environment) for QT. It is developed
 <h2>Create the application source files</h2>
 <p>create a folder <code>QtTest</code> and place these files there (refer to the link in references on explanation of these)</p>
 <p>main.cpp</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;QtWidgets&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;mainwidget.h&quot;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QtWidgets&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mainwidget.h&quot;</span><span class="cp"></span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-    <span class="c1">// Creates an instance of QApplication</span>
-    <span class="n">QApplication</span> <span class="n">a</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Creates an instance of QApplication</span>
+<span class="w">    </span><span class="n">QApplication</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span><span class="w"></span>
 
-    <span class="c1">// This is our MainWidget class containing our GUI and functionality</span>
-    <span class="n">MainWidget</span> <span class="n">w</span><span class="p">;</span>
-    <span class="n">w</span><span class="p">.</span><span class="n">show</span><span class="p">();</span> <span class="c1">// Show main window</span>
+<span class="w">    </span><span class="c1">// This is our MainWidget class containing our GUI and functionality</span>
+<span class="w">    </span><span class="n">MainWidget</span><span class="w"> </span><span class="n">w</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">w</span><span class="p">.</span><span class="n">show</span><span class="p">();</span><span class="w"> </span><span class="c1">// Show main window</span>
 
-    <span class="c1">// run the application and return execs() return value/code</span>
-    <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">exec</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// run the application and return execs() return value/code</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">exec</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
 
@@ -179,54 +179,54 @@ QTCreator is an IDE (Integrated Development Environment) for QT. It is developed
 <div class="highlight"><pre><span></span><code><span class="cp">#ifndef MAINWIDGET_H</span>
 <span class="cp">#define MAINWIDGET_H</span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;QWidget&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QWidget&gt;</span><span class="cp"></span>
 
-<span class="k">class</span> <span class="nc">QPushButton</span><span class="p">;</span>
-<span class="k">class</span> <span class="nc">QTextBrowser</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">QPushButton</span><span class="p">;</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">QTextBrowser</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">// This is the declaration of our MainWidget class</span>
 <span class="c1">// The definition/implementation is in mainwidget.cpp</span>
-<span class="k">class</span> <span class="nc">MainWidget</span> <span class="o">:</span> <span class="k">public</span> <span class="n">QWidget</span>
-<span class="p">{</span>
-    <span class="n">Q_OBJECT</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MainWidget</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">QWidget</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Q_OBJECT</span><span class="w"></span>
 
-<span class="k">public</span><span class="o">:</span>
-    <span class="k">explicit</span> <span class="n">MainWidget</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//Constructor</span>
-    <span class="o">~</span><span class="n">MainWidget</span><span class="p">();</span> <span class="c1">// Destructor</span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">MainWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="w"> </span><span class="o">*</span><span class="n">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">//Constructor</span>
+<span class="w">    </span><span class="o">~</span><span class="n">MainWidget</span><span class="p">();</span><span class="w"> </span><span class="c1">// Destructor</span>
 
-<span class="k">private</span><span class="o">:</span>
-   <span class="n">QPushButton</span><span class="o">*</span> <span class="n">button_</span><span class="p">;</span>
-   <span class="n">QTextBrowser</span><span class="o">*</span> <span class="n">textBrowser_</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="w">   </span><span class="n">QPushButton</span><span class="o">*</span><span class="w"> </span><span class="n">button_</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="n">QTextBrowser</span><span class="o">*</span><span class="w"> </span><span class="n">textBrowser_</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
 <span class="cp">#endif </span><span class="c1">// MAINWIDGET_H</span>
 </code></pre></div>
 
 
 <p>mainwidget.cpp</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;QtWidgets&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;mainwidget.h&quot;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QtWidgets&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mainwidget.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Constructor for main widget</span>
-<span class="n">MainWidget</span><span class="o">::</span><span class="n">MainWidget</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span>
-    <span class="n">QWidget</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
-<span class="p">{</span>
-   <span class="n">button_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QPushButton</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Push Me!&quot;</span><span class="p">));</span>
-   <span class="n">textBrowser_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QTextBrowser</span><span class="p">();</span>
+<span class="n">MainWidget</span><span class="o">::</span><span class="n">MainWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="w"> </span><span class="o">*</span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">QWidget</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">button_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">QPushButton</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Push Me!&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">   </span><span class="n">textBrowser_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">QTextBrowser</span><span class="p">();</span><span class="w"></span>
 
-   <span class="n">QGridLayout</span> <span class="o">*</span><span class="n">mainLayout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QGridLayout</span><span class="p">;</span>
-   <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addWidget</span><span class="p">(</span><span class="n">button_</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-   <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addWidget</span><span class="p">(</span><span class="n">textBrowser_</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-   <span class="n">setLayout</span><span class="p">(</span><span class="n">mainLayout</span><span class="p">);</span>
-   <span class="n">setWindowTitle</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Connecting buttons to processes..&quot;</span><span class="p">));</span>
-<span class="p">}</span>
+<span class="w">   </span><span class="n">QGridLayout</span><span class="w"> </span><span class="o">*</span><span class="n">mainLayout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">QGridLayout</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addWidget</span><span class="p">(</span><span class="n">button_</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addWidget</span><span class="p">(</span><span class="n">textBrowser_</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">setLayout</span><span class="p">(</span><span class="n">mainLayout</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Connecting buttons to processes..&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Destructor</span>
-<span class="n">MainWidget</span><span class="o">::~</span><span class="n">MainWidget</span><span class="p">()</span>
-<span class="p">{</span>
-   <span class="k">delete</span> <span class="n">button_</span><span class="p">;</span>
-   <span class="k">delete</span> <span class="n">textBrowser_</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="n">MainWidget</span><span class="o">::~</span><span class="n">MainWidget</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="k">delete</span><span class="w"> </span><span class="n">button_</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">delete</span><span class="w"> </span><span class="n">textBrowser_</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
 

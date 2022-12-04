@@ -221,8 +221,8 @@ new_vocab = torchtext.vocab.Vocab(counter=vocab.freqs, max_size=1000, min_freq=1
 
 <p>Unlike the old pattern using BucketIterator.splits, users are encouraged to use torch.utils.data.DataLoader to generate batches of data. You can specify how to batch and pad the samples with a custom function passed to collate_fn. Here is an example to pad sequences with similar lengths and load data through DataLoader. To generate random samples, turn on the shuffle flag in DataLoader. Otherwise, a sequential sampler will be automatically constructed.</p>
 <h3>Generate a list of tuples of text length, index, label, text</h3>
-<div class="highlight"><pre><span></span><code><span class="n">data_len</span> <span class="o">=</span> <span class="p">[(</span><span class="n">len</span><span class="p">(</span><span class="n">txt</span><span class="p">),</span> <span class="n">idx</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">txt</span><span class="p">)</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">txt</span><span class="p">)</span> <span class="ow">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)]</span>
-<span class="n">data_len</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="c1"># sort by length and pad sequences with similar lengths</span>
+<div class="highlight"><pre><span></span><code><span class="n">data_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[(</span><span class="n">len</span><span class="p">(</span><span class="n">txt</span><span class="p">),</span><span class="w"> </span><span class="n">idx</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="n">txt</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">idx</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="n">txt</span><span class="p">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">enumerate</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)]</span><span class="w"></span>
+<span class="n">data_len</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span><span class="w"> </span><span class="c1"># sort by length and pad sequences with similar lengths</span><span class="w"></span>
 </code></pre></div>
 
 
@@ -302,6 +302,13 @@ new_vocab = torchtext.vocab.Vocab(counter=vocab.freqs, max_size=1000, min_freq=1
 
 
                 <aside class="post-nav">
+                    <a class="post-nav-next" href="/2022/12/chatgpt-terminal.html">
+                        <section class="post-nav-teaser">
+                            <i class="ic ic-arrow-left"></i>
+                                <h2 class="post-nav-title">Playing around with ChatGPT and making it a Linux Terminal</h2>
+                            <p class="post-nav-excerpt">I was just playing around with ChatGPT, trying to make it act like a Linux Terminal</p>
+                        </section>
+                    </a>
                     <a class="post-nav-prev" href="/2021/05/setup-xavier-nx.html">
                         <section class="post-nav-teaser">
                             <i class="ic ic-arrow-right"></i>

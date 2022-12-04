@@ -5,42 +5,49 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2021-06-14T10:08:11-00:00</lastmod>
+<lastmod>2022-12-04T16:29:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2021-06-14T10:08:11-00:00</lastmod>
+<lastmod>2022-12-04T16:29:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2021-06-14T10:08:11-00:00</lastmod>
+<lastmod>2022-12-04T16:29:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/authors.html</loc>
-<lastmod>2021-06-14T10:08:11-00:00</lastmod>
+<lastmod>2022-12-04T16:29:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2021-06-14T10:08:11-00:00</lastmod>
+<lastmod>2022-12-04T16:29:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/pages/about/</loc>
-<lastmod>2021-06-14T10:07:21+05:30</lastmod>
+<lastmod>2022-12-04T16:28:35+05:30</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/2022/12/chatgpt-terminal.html</loc>
+<lastmod>2022-12-04T21:50:00+05:30</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -130,6 +137,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/category/ai</loc>
+<lastmod>2022-12-04T21:50:00+05:53</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/category/blog</loc>
 <lastmod>2020-05-20T10:20:00+05:53</lastmod>
 <changefreq>daily</changefreq>
@@ -160,6 +174,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/category/tutorial</loc>
 <lastmod>2021-05-07T19:30:00+05:53</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/ai</loc>
+<lastmod>2022-12-04T21:50:00+05:53</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/chatgpt</loc>
+<lastmod>2022-12-04T21:50:00+05:53</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -376,7 +404,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/satyajit-ghana</loc>
-<lastmod>2021-05-31T13:00:00+05:53</lastmod>
+<lastmod>2022-12-04T21:50:00+05:53</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
